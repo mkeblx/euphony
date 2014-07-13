@@ -42,7 +42,7 @@
       width = canvas.width, height = canvas.height;
       context = canvas.getContext('2d');
       gradient = context.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width / 2);
-      gradient.addColorStop(0, (new THREE.Color(hexColor)).getContextStyle());
+      gradient.addColorStop(0, (new THREE.Color(hexColor)).getStyle());
       gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
       context.fillStyle = gradient;
       context.fillRect(0, 0, width, height);
@@ -63,7 +63,7 @@
           _ref1 = particleSystem.geometry.vertices;
           for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
             particle = _ref1[_j];
-            particle.addSelf(particle.velocity);
+            particle.add(particle.velocity);
           }
           _results.push(particleSystem.geometry.verticesNeedUpdate = true);
         }

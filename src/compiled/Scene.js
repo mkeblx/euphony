@@ -14,6 +14,7 @@
       height = $container.height();
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(60, width / height, 0.001, 100000);
+      camera.position.set(0,0,0);
       camera.lookAt(new THREE.Vector3());
       scene.add(camera);
       renderer = new THREE.WebGLRenderer({
@@ -31,17 +32,18 @@
       auxLight = new THREE.DirectionalLight(0xffffff, 0.3);
       auxLight.position.set(-4, -1, -2).normalize();
       scene.add(auxLight);
-      controls = new THREE.OrbitControls(camera);
-      controls.center.set(8.73, 0, 0);
-      controls.autoRotateSpeed = 1.0;
-      controls.autoRotate = false;
-      camera.position.copy(controls.center).addSelf(new THREE.Vector3(2, 6, 9));
+      //controls = new THREE.OrbitControls(camera);
+      //controls.center.set(8.73, 0, 0);
+      //controls.autoRotateSpeed = 1.0;
+      //controls.autoRotate = false;
+      camera.position
+        .add(new THREE.Vector3(8, 6, 15));
       $(window).resize(this.onresize);
       this.$container = $container;
       this.camera = camera;
       this.scene = scene;
       this.renderer = renderer;
-      this.controls = controls;
+      //this.controls = controls;
     }
 
     Scene.prototype.onresize = function() {
@@ -68,7 +70,7 @@
       if (typeof callback === "function") {
         callback();
       }
-      this.controls.update();
+      //this.controls.update();
       this.renderer.clear();
       return this.renderer.render(this.scene, this.camera);
     };

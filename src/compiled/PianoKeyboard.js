@@ -175,13 +175,13 @@
       Black = KeyType.Black;
       _ref = keyInfo[note], keyType = _ref.keyType, keyCenterPosX = _ref.keyCenterPosX;
       if (keyType === Black) {
-        geometry = new THREE.CubeGeometry(blackKeyWidth, blackKeyHeight, blackKeyLength);
+        geometry = new THREE.BoxGeometry(blackKeyWidth, blackKeyHeight, blackKeyLength);
         material = new THREE.MeshPhongMaterial({
           color: blackKeyColor
         });
         position = new THREE.Vector3(keyCenterPosX, blackKeyPosY, blackKeyPosZ);
       } else {
-        geometry = new THREE.CubeGeometry(whiteKeyWidth, whiteKeyHeight, whiteKeyLength);
+        geometry = new THREE.BoxGeometry(whiteKeyWidth, whiteKeyHeight, whiteKeyLength);
         material = new THREE.MeshPhongMaterial({
           color: whiteKeyColor,
           emissive: 0x111111

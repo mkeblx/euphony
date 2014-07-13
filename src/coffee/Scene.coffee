@@ -10,6 +10,7 @@ class Scene
 
     # create camera
     camera = new THREE.PerspectiveCamera(60, width / height, 0.001, 100000)
+    camera.position.set(0,0,0);
     camera.lookAt(new THREE.Vector3())
     scene.add(camera)
 
@@ -32,11 +33,7 @@ class Scene
     auxLight.position.set(-4, -1, -2).normalize()
     scene.add(auxLight)
 
-    controls = new THREE.OrbitControls(camera)
-    controls.center.set(8.73, 0, 0)
-    controls.autoRotateSpeed = 1.0
-    controls.autoRotate = false
-    camera.position.copy(controls.center).addSelf(new THREE.Vector3(2, 6, 9))
+    camera.position.add(new THREE.Vector3(8, 6, 15))
 
     $(window).resize(@onresize)
 
@@ -45,7 +42,6 @@ class Scene
     @camera = camera
     @scene = scene
     @renderer = renderer
-    @controls = controls
 
   onresize: =>
     [width, height] = [@$container.width(), @$container.height()]
@@ -62,7 +58,6 @@ class Scene
   animate: (callback) =>
     requestAnimationFrame => @animate(callback)
     callback?()
-    @controls.update()
     @renderer.clear()
     @renderer.render(@scene, @camera)
 

@@ -25,7 +25,7 @@ build:
 		lib/jquery-1.7.1.min.js \
 		lib/jquery.easing.js \
 		lib/jquery.nanoscroller.min.js \
-		lib/Three.js \
+		lib/three.min.js \
 		lib/state-machine.min.js \
 		lib/spin.min.js \
 		lib/async.min.js \
