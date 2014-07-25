@@ -20,7 +20,7 @@
       this.materials = [];
       for (note = _i = 0, _ref = keyInfo.length; 0 <= _ref ? _i < _ref : _i > _ref; note = 0 <= _ref ? ++_i : --_i) {
         color = noteToColor(note);
-        this.materials[note] = new THREE.ParticleBasicMaterial({
+        this.materials[note] = new THREE.PointCloudMaterial({
           size: this.size,
           map: this._generateTexture(color),
           blending: THREE.AdditiveBlending,
@@ -85,7 +85,7 @@
         geometry.vertices.push(particle);
       }
       material = this.materials[note];
-      particleSystem = new THREE.ParticleSystem(geometry, material);
+      particleSystem = new THREE.PointCloud(geometry, material);
       particleSystem.age = 0;
       particleSystem.transparent = true;
       particleSystem.opacity = 0.8;

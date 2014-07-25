@@ -12,7 +12,7 @@ class NoteParticles
 
     for note in [0...keyInfo.length]
       color = noteToColor(note)
-      @materials[note] = new THREE.ParticleBasicMaterial
+      @materials[note] = new THREE.PointCloudMaterial
         size: @size
         map: @_generateTexture(color)
         blending: THREE.AdditiveBlending
@@ -87,7 +87,7 @@ class NoteParticles
 
     material = @materials[note]
 
-    particleSystem = new THREE.ParticleSystem(geometry, material)
+    particleSystem = new THREE.PointCloud(geometry, material)
     particleSystem.age = 0
     particleSystem.transparent = true
     particleSystem.opacity = 0.8
