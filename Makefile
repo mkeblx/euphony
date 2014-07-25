@@ -22,10 +22,12 @@ build:
 		lib/MIDI.js/Color.js \
 		lib/MIDI.js/MusicTheory.js \
 		lib/MIDI.js/MusicTheory.Synesthesia.js \
-		lib/jquery-1.7.1.min.js \
+		lib/jquery-2.1.1.min.js \
 		lib/jquery.easing.js \
 		lib/jquery.nanoscroller.min.js \
 		lib/three.min.js \
+		lib/VREffect.js \
+		lib/VRControls.js \
 		lib/state-machine.min.js \
 		lib/spin.min.js \
 		lib/async.min.js \

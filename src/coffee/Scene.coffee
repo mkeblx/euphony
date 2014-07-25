@@ -1,5 +1,7 @@
 class Scene
   constructor: (container) ->
+    time = Date.now()
+
     # set dom container
     $container = $(container)
     width = $container.width()
@@ -21,6 +23,10 @@ class Scene
     renderer.autoClear = false
     $container.append(renderer.domElement)
 
+    #VR
+    effect = new THREE.VREffect(renderer) 
+    controls = new THREE.VRControls(camera)
+
     # create lights
     ambientLight = new THREE.AmbientLight(0x222222)
     scene.add(ambientLight)
@@ -38,10 +44,15 @@ class Scene
     $(window).resize(@onresize)
 
     # set instance variables
+    @time = time
+
+
     @$container = $container
     @camera = camera
     @scene = scene
     @renderer = renderer
+    @effect = effect
+    @controls = controls
 
   onresize: =>
     [width, height] = [@$container.width(), @$container.height()]
@@ -58,8 +69,15 @@ class Scene
   animate: (callback) =>
     requestAnimationFrame => @animate(callback)
     callback?()
-    @renderer.clear()
-    @renderer.render(@scene, @camera)
+
+    if (1)
+        @controls.update()
+        @effect.render( @scene, @camera)
+    else
+        @renderer.clear()
+        @renderer.render(@scene, @camera)
+
+    @time = Date.now()
 
 # export Scene to global
 @Scene = Scene
