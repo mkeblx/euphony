@@ -7,6 +7,8 @@ class Scene
     width = $container.width()
     height = $container.height()
 
+    mode = 'VR'
+
     # create scene
     scene = new THREE.Scene()
 
@@ -39,7 +41,10 @@ class Scene
     auxLight.position.set(-4, -1, -2).normalize()
     scene.add(auxLight)
 
-    camera.position.add(new THREE.Vector3(8, 6, 15))
+    camera.position.add(new THREE.Vector3(9, 3, 4))
+
+    fullScreenButton = $('#vr-button')
+    fullScreenButton.click(@fullscreen)
 
     $(window).resize(@onresize)
 
@@ -53,6 +58,10 @@ class Scene
     @renderer = renderer
     @effect = effect
     @controls = controls
+    @mode = mode
+
+  fullscreen: => 
+    @effect.setFullScreen(true)
 
   onresize: =>
     [width, height] = [@$container.width(), @$container.height()]
@@ -70,7 +79,7 @@ class Scene
     requestAnimationFrame => @animate(callback)
     callback?()
 
-    if (1)
+    if (@mode == 'VR')
         @controls.update()
         @effect.render( @scene, @camera)
     else

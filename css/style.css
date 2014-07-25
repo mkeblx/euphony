@@ -23,10 +23,8 @@ a:hover {
 
 #canvas {
   position: absolute;
-  left: 0px;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
 #player {
@@ -39,6 +37,25 @@ a:hover {
   padding: 0;
   color: #ddd;
   background: rgba(100, 100, 100, 0.3);
+}
+
+#vr-button {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  padding: 8px;
+  color: #fff;
+  background-color: #555;
+}
+
+#vr-button:hover {
+  cursor: pointer;
+  background-color: rgb(18, 36, 70);
+}
+
+#vr-button.error {
+  pointer-events: none;
+  background-color: red;
 }
 
 .player-controls {

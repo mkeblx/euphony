@@ -7,11 +7,13 @@
     function Scene(container) {
       this.animate = __bind(this.animate, this);
       this.onresize = __bind(this.onresize, this);
-      var $container, ambientLight, auxLight, camera, controls, effect, height, mainLight, renderer, scene, time, width;
+      this.fullscreen = __bind(this.fullscreen, this);
+      var $container, ambientLight, auxLight, camera, controls, effect, fullScreenButton, height, mainLight, mode, renderer, scene, time, width;
       time = Date.now();
       $container = $(container);
       width = $container.width();
       height = $container.height();
+      mode = 'VR';
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(60, width / height, 0.001, 100000);
       camera.position.set(0, 0, 0);
@@ -34,7 +36,9 @@
       auxLight = new THREE.DirectionalLight(0xffffff, 0.3);
       auxLight.position.set(-4, -1, -2).normalize();
       scene.add(auxLight);
-      camera.position.add(new THREE.Vector3(8, 6, 15));
+      camera.position.add(new THREE.Vector3(9, 3, 4));
+      fullScreenButton = $('#vr-button');
+      fullScreenButton.click(this.fullscreen);
       $(window).resize(this.onresize);
       this.time = time;
       this.$container = $container;
@@ -43,7 +47,12 @@
       this.renderer = renderer;
       this.effect = effect;
       this.controls = controls;
+      this.mode = mode;
     }
+
+    Scene.prototype.fullscreen = function() {
+      return this.effect.setFullScreen(true);
+    };
 
     Scene.prototype.onresize = function() {
       var height, width, _ref;
@@ -70,7 +79,7 @@
       if (typeof callback === "function") {
         callback();
       }
-      if (1.) {
+      if (this.mode === 'VR') {
         this.controls.update();
         this.effect.render(this.scene, this.camera);
       } else {
